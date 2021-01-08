@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+      #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      properties:
+      hibernate:
+        #dialect: org.hibernate.dialect.MySQLInnoDBDialect
+        #dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    #url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/MyDB
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: postgres
+    password: 12345
