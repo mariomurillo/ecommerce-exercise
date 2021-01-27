@@ -9,4 +9,5 @@ public interface AccountService {
   Account getAccountById(UUID id);
 
   void createAccount(Account account);
+  void deleteAccountById (UUID id);
 }

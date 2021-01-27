@@ -13,3 +13,5 @@ spring:
     url: jdbc:postgresql://localhost:5432/ecommercedb
     username: postgres
     password: 12345
+server:
+  port: 8081
