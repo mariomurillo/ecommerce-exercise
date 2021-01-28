@@ -28,7 +28,6 @@ public class AccountServiceDefault implements AccountService {
 
   @Override
   public void deleteAccountById(UUID id) {
-	  Account account = getAccountById(id);
 	  repository.deleteById(id);
   }
   private Account getAccount(com.ecommerce.model.Account account) {
