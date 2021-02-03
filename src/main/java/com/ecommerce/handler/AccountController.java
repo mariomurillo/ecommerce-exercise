@@ -8,6 +8,7 @@ import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
 import com.ecommerce.service.AccountService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,13 @@ public class AccountController {
   public ResponseEntity<Void> createAccount(@RequestBody AccountRequest request) {
     service.createAccount(getAccountFromRequest(request));
     return ResponseEntity.ok().build();
+  }
+  
+  @DeleteMapping("/accounts/{id}")
+  public  void deleteAccountById(@PathVariable(value= "id")UUID id){
+	
+	  service.deleteAccountById(id);
+	  
   }
   
   @PutMapping ("/accounts/{id}")
