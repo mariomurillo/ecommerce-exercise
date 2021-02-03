@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
+import com.ecommerce.handler.request.AccountRequest;
 import com.ecommerce.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,13 @@ public class AccountServiceDefault implements AccountService {
   @Override
   public void createAccount(final Account account) {
     repository.save(getAccount(account));
+  }
+  
+  @Override
+  public void updateAccountById (AccountRequest account, UUID id) {
+	  repository.save(account);
+	  
+	  
   }
 
   private Account getAccount(com.ecommerce.model.Account account) {

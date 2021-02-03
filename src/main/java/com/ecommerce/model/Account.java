@@ -7,14 +7,13 @@ import javax.persistence.EnumType;
 import java.util.UUID;
 import org.hibernate.annotations.Type;
 
-@Entity
+@Entity                    
 public class Account {
   @Id
   @Type(type="org.hibernate.type.UUIDCharType")
   private UUID id = UUID.randomUUID();
-
+  
   private String email;
-
   private String password;
 
   @Enumerated(EnumType.STRING)
