@@ -2,7 +2,11 @@ package com.ecommerce.domain;
 
 public class Account {
 
-  private String id;
+  public void setId(String id) {
+		this.id = id;
+	}
+
+private String id;
 
   private String email;
 

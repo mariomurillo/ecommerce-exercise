@@ -28,8 +28,12 @@ public class AccountServiceDefault implements AccountService {
   }
   
   @Override
-  public void updateAccountById (AccountRequest account, UUID id) {
-	  repository.save(account);
+  public void updateAccountById(Account account ) {
+	  com.ecommerce.model.Account accountFound = repository.findById(UUID.fromString(account.getId())).get();
+	  accountFound.setEmail(account.getEmail());
+	  accountFound.setPassword(account.getPassword());
+	  accountFound.setType(com.ecommerce.model.AccountType.valueOf(account.getType().name()));
+	  repository.save(accountFound);
 	  
 	  
   }
