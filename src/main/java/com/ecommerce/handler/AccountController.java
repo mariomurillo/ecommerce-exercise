@@ -45,7 +45,7 @@ public class AccountController {
   }
   
   @PutMapping("/accounts/{id}")
-  public ResponseEntity<AccountResponse> updateAccount (@RequestBody AccountRequest request, @PathVariable(value= "id")UUID id) {
+  public ResponseEntity<AccountResponse> updateAccount (@RequestBody AccountRequest request, @PathVariable(value = "id")UUID id) {
 	  Account account = getAccountFromRequest(request);
 	  account.setId(id.toString());
 	  service.updateAccountById(account);

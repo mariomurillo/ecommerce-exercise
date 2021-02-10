@@ -2,9 +2,6 @@ package com.ecommerce.domain;
 
 public class Account {
 
-  public void setId(String id) {
-		this.id = id;
-	}
 
 private String id;
 
@@ -35,6 +32,10 @@ private String id;
 
   public AccountType getType() {
     return this.type;
+  }
+  
+  public void setId(String id) {
+		this.id = id;
   }
 
   public static AccountBuilder builder() {

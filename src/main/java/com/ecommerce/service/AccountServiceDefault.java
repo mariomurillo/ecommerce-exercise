@@ -34,8 +34,6 @@ public class AccountServiceDefault implements AccountService {
 	  accountFound.setPassword(account.getPassword());
 	  accountFound.setType(com.ecommerce.model.AccountType.valueOf(account.getType().name()));
 	  repository.save(accountFound);
-	  
-	  
   }
 
   @Override
