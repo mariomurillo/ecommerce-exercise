@@ -32,9 +32,9 @@ public class AccountController {
   }
 
   @PostMapping("/accounts")
-  public ResponseEntity<Void> createAccount(@RequestBody AccountRequest request) {
+  public ResponseEntity<String> createAccount(@RequestBody AccountRequest request) {
     service.createAccount(getAccountFromRequest(request));
-    return ResponseEntity.ok().build();
+    return ResponseEntity.ok("Cuenta creada con Exito");
   }
   
   @DeleteMapping("/accounts/{id}")
