@@ -7,7 +7,7 @@ import com.ecommerce.domain.Account;
 public interface AccountService {
 
   Account getAccountById(UUID id);
-
+  void updateAccountById(Account account);
   void createAccount(Account account);
   void deleteAccountById(UUID id);
 }

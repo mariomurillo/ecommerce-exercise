@@ -32,6 +32,10 @@ public class Account {
   public AccountType getType() {
     return this.type;
   }
+  
+  public void setId(String id) {
+		this.id = id;
+  }
 
   public static AccountBuilder builder() {
     return new AccountBuilder();
