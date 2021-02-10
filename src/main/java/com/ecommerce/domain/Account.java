@@ -2,8 +2,7 @@ package com.ecommerce.domain;
 
 public class Account {
 
-
-private String id;
+  private String id;
 
   private String email;
 
