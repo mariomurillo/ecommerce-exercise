@@ -1,11 +1,18 @@
 package com.ecommerce.service;
 
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.UUID;
 
 import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
 import com.ecommerce.handler.request.AccountRequest;
 import com.ecommerce.repository.AccountRepository;
+
+import org.hibernate.exception.DataException;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
@@ -23,8 +30,13 @@ public class AccountServiceDefault implements AccountService {
   }
 
   @Override
-  public void createAccount(final Account account) {
-    repository.save(getAccount(account));
+  public void createAccount(final Account account)    {
+	  try {		
+		  repository.save(getAccount(account));
+	    }
+	  catch (Exception e ) {
+		  	  System.out.println("Connection failed ");
+	  }
   }
   
   @Override
