@@ -24,7 +24,12 @@ public class AccountServiceDefault implements AccountService {
 
   @Override
   public void createAccount(final Account account) {
+	  try {
     repository.save(getAccount(account));
+  }
+	  catch (Exception e) {
+		System.out.println("Connection Failed");
+	}
   }
   
   @Override
