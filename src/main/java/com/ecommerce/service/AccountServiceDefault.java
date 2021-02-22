@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
+import com.ecommerce.exceptions.ConnectionException;
 import com.ecommerce.handler.request.AccountRequest;
 import com.ecommerce.repository.AccountRepository;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,14 @@ public class AccountServiceDefault implements AccountService {
   }
 
   @Override
-  public void createAccount(final Account account) {
+  public void  createAccount(final Account account) throws ConnectionException {
 	  try {
-    repository.save(getAccount(account));
+     repository.save(getAccount(account));
   }
 	  catch (Exception e) {
-		System.out.println("Connection Failed");
+		  throw new ConnectionException("Can´t create account at this time.  Please try again later");	
 	}
+	  
   }
   
   @Override

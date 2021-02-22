@@ -6,6 +6,7 @@ import com.ecommerce.handler.request.AccountRequest;
 import com.ecommerce.handler.response.AccountResponse;
 import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
+import com.ecommerce.exceptions.ConnectionException;
 import com.ecommerce.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,8 +34,14 @@ public class AccountController {
 
   @PostMapping("/accounts")
   public ResponseEntity<String> createAccount(@RequestBody AccountRequest request) {
-    service.createAccount(getAccountFromRequest(request));
-    return ResponseEntity.ok("Account created successfully");
+   try { 
+	   service.createAccount(getAccountFromRequest(request));
+	   return ResponseEntity.ok("Account created successfully");
+	
+   		} catch (ConnectionException ce) {
+   			return ResponseEntity.ok(ce.getMessage());
+   		}
+	 
   }
   
   @DeleteMapping("/accounts/{id}")
