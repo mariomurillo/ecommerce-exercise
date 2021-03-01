@@ -23,4 +23,9 @@ This is a example project for do a web site for an ecommerce, for this exercise 
 * When you have installed git, you need clone the repository with this command: `git clone git@github.com:mariomurillo/ecommerce-exercise.git`
 * Run this command in the root of the project for run the project: 
   - UNIX: `./mvnw spring-boot:run`
-  - Windows: `mvnw.cmd spring-boot:run`
+  - Windows: `mvnw.cmd spring-boot:run` or `mvn spring-boot:run`
+
+### Stepts to run the unit tests in local environment
+* For run the unit tests you can the run this command:
+  - UNIX: `./mvnw test`
+  - Windows: `mvnw.cmd test` or `mvn test`
