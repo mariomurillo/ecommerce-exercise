@@ -73,7 +73,8 @@ public class AccountServiceDefaultTest {
     } catch (ConnectionException ce) {
       // We hope the `createAccount` throw an Exception and that exception that
       // the same message that we put into the `assertEquals` method.
-      assertEquals("Can´t create account at this time.  Please try again later", 
+      assertEquals(
+          "Can´t create account at this time.  Please try again later",
           ce.getMessage());
     }
 
