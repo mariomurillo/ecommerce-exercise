@@ -54,6 +54,13 @@ jobs:
           # The default PostgreSQL port
           POSTGRES_PORT: 5432
 
+      # Git Checkout
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
       # Mega-Linter
       - name: Mega-Linter
         id: ml
