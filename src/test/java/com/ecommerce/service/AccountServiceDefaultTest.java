@@ -17,8 +17,8 @@ import org.mockito.Mockito;
 
 public class AccountServiceDefaultTest {
 
-  public AccountService service;
-  public AccountRepository repository;
+  private AccountService service;
+  private AccountRepository repository;
 
   @BeforeEach
   public void setUp() {
@@ -32,7 +32,7 @@ public class AccountServiceDefaultTest {
   @Test
   public void createAccountSuccessfulTest() {
     // The method `when` of Mockito together with the method `thenReturn` return
-    // something that we put into the parameter in `thenReturn` after to 
+    // something that we put into the parameter in `thenReturn` after to
     // invoke the method `when`
     // The `any` method return an any objetc
     Mockito.when(repository.save(any())).thenReturn(any());
@@ -59,8 +59,8 @@ public class AccountServiceDefaultTest {
    * */
   @Test
   public void createAccountWithExceptionTest() {
-    // We use the method `thenThrow` of Mockito to simulate the throw of an Exception
-    // when we call the method save
+    // We use the method `thenThrow` of Mockito to simulate the throw of an
+    // Exception when we call the method save
     Mockito.when(repository.save(any())).thenThrow(new RuntimeException());
 
     Account account = Account.builder()
@@ -71,9 +71,10 @@ public class AccountServiceDefaultTest {
     try {
       service.createAccount(account);
     } catch (ConnectionException ce) {
-      // We hope the `createAccount` throw an Exception and that exception that the same 
-      // message that we put into the `assertEquals` method.
-      assertEquals("Can´t create account at this time.  Please try again later", ce.getMessage());
+      // We hope the `createAccount` throw an Exception and that exception that
+      // the same message that we put into the `assertEquals` method.
+      assertEquals("Can´t create account at this time.  Please try again later", 
+          ce.getMessage());
     }
 
     Mockito.verify(repository, times(1)).save(any());
