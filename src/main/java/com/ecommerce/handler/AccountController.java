@@ -6,7 +6,7 @@ import com.ecommerce.handler.request.AccountRequest;
 import com.ecommerce.handler.response.AccountResponse;
 import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
-import com.ecommerce.exceptions.ConnectionException;
+import com.ecommerce.exceptions.AccountException;
 import com.ecommerce.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +38,8 @@ public class AccountController {
 	   service.createAccount(getAccountFromRequest(request));
 	   return ResponseEntity.ok("Account created successfully");
 	
-   		} catch (ConnectionException ce) {
+   	} 
+   		catch (AccountException ce) {
    			return ResponseEntity.ok(ce.getMessage());
    		}
 	 
