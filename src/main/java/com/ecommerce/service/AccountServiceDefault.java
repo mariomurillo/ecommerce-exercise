@@ -1,13 +1,11 @@
 package com.ecommerce.service;
 
 import java.util.UUID;
-
+import org.springframework.stereotype.Service;
 import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
 import com.ecommerce.exceptions.AccountException;
-import com.ecommerce.handler.request.AccountRequest;
 import com.ecommerce.repository.AccountRepository;
-import org.springframework.stereotype.Service;
 
 @Service("userService")
 public class AccountServiceDefault implements AccountService {
@@ -19,50 +17,48 @@ public class AccountServiceDefault implements AccountService {
   }
 
   @Override
-  public Account getAccountById(UUID id) {
+  public Account getAccountById(final UUID id) {
     return getAccount(repository.findById(id).get());
   }
 
   @Override
-  public void  createAccount(final Account account) throws AccountException {
-	  try {
-     repository.save(getAccount(account));
-  }
-	  catch (Exception e) {
-		  throw new AccountException("Can´t create account at this time. Please try again later");	
-	}
-	  
-  }
-  
-  @Override
-  public void updateAccountById(Account account ) {
-	  com.ecommerce.model.Account accountFound = repository.findById(UUID.fromString(account.getId())).get();
-	  accountFound.setEmail(account.getEmail());
-	  accountFound.setPassword(account.getPassword());
-	  accountFound.setType(com.ecommerce.model.AccountType.valueOf(account.getType().name()));
-	  repository.save(accountFound);
+  public void createAccount(final Account account) throws AccountException {
+    try {
+      repository.save(getAccount(account));
+    } catch (Exception e) {
+      throw new AccountException(
+          "Can´t create account at this time. Please try again later");
+    }
+
   }
 
   @Override
-  public void deleteAccountById(UUID id) {
-	  repository.deleteById(id);
-  }
-  private Account getAccount(com.ecommerce.model.Account account) {
-    return Account
-      .builder()
-      .withId(account.getId().toString())
-      .withEmail(account.getEmail())
-      .withPassword(account.getPassword())
-      .withType(AccountType.valueOf(account.getType().name()))
-      .build();
+  public void updateAccountById(final Account account) {
+    com.ecommerce.model.Account accountFound =
+        repository.findById(UUID.fromString(account.getId())).get();
+    accountFound.setEmail(account.getEmail());
+    accountFound.setPassword(account.getPassword());
+    accountFound.setType(
+        com.ecommerce.model.AccountType.valueOf(account.getType().name()));
+    repository.save(accountFound);
   }
 
-  private com.ecommerce.model.Account getAccount(Account account) {
-    return com.ecommerce.model.Account
-      .builder()
-      .withEmail(account.getEmail())
-      .withPassword(account.getPassword())
-      .withType(com.ecommerce.model.AccountType.valueOf(account.getType().name()))
-      .build();
+  @Override
+  public void deleteAccountById(final UUID id) {
+    repository.deleteById(id);
+  }
+
+  private Account getAccount(final com.ecommerce.model.Account account) {
+    return Account.builder().withId(account.getId().toString())
+        .withEmail(account.getEmail()).withPassword(account.getPassword())
+        .withType(AccountType.valueOf(account.getType().name())).build();
+  }
+
+  private com.ecommerce.model.Account getAccount(final Account account) {
+    return com.ecommerce.model.Account.builder().withEmail(account.getEmail())
+        .withPassword(account.getPassword())
+        .withType(
+            com.ecommerce.model.AccountType.valueOf(account.getType().name()))
+        .build();
   }
 }
