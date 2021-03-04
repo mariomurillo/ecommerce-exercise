@@ -28,14 +28,14 @@ public class AccountController {
 
   @GetMapping("/accounts")
   public ResponseEntity<AccountResponse> getAccount(
-      @RequestParam(value = "id") String id) {
+      @RequestParam(value = "id") final String id) {
     return ResponseEntity
         .ok(getResponse(service.getAccountById(UUID.fromString(id))));
   }
 
   @PostMapping("/accounts")
   public ResponseEntity<String> createAccount(
-      @RequestBody AccountRequest request) {
+      @RequestBody final AccountRequest request) {
     try {
       service.createAccount(getAccountFromRequest(request));
       return ResponseEntity.ok("Account created successfully");
@@ -47,7 +47,7 @@ public class AccountController {
   }
 
   @DeleteMapping("/accounts/{id}")
-  public void deleteAccountById(@PathVariable(value = "id") UUID id) {
+  public void deleteAccountById(@PathVariable(value = "id") final UUID id) {
 
     service.deleteAccountById(id);
 
@@ -55,8 +55,8 @@ public class AccountController {
 
   @PutMapping("/accounts/{id}")
   public ResponseEntity<AccountResponse> updateAccount(
-      @RequestBody AccountRequest request,
-      @PathVariable(value = "id") UUID id) {
+      @RequestBody final AccountRequest request,
+      @PathVariable(value = "id") final UUID id) {
     Account account = getAccountFromRequest(request);
     account.setId(id.toString());
     service.updateAccountById(account);

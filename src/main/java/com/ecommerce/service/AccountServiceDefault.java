@@ -17,7 +17,7 @@ public class AccountServiceDefault implements AccountService {
   }
 
   @Override
-  public Account getAccountById(UUID id) {
+  public Account getAccountById(final UUID id) {
     return getAccount(repository.findById(id).get());
   }
 
@@ -33,7 +33,7 @@ public class AccountServiceDefault implements AccountService {
   }
 
   @Override
-  public void updateAccountById(Account account) {
+  public void updateAccountById(final Account account) {
     com.ecommerce.model.Account accountFound =
         repository.findById(UUID.fromString(account.getId())).get();
     accountFound.setEmail(account.getEmail());
@@ -44,17 +44,17 @@ public class AccountServiceDefault implements AccountService {
   }
 
   @Override
-  public void deleteAccountById(UUID id) {
+  public void deleteAccountById(final UUID id) {
     repository.deleteById(id);
   }
 
-  private Account getAccount(com.ecommerce.model.Account account) {
+  private Account getAccount(final com.ecommerce.model.Account account) {
     return Account.builder().withId(account.getId().toString())
         .withEmail(account.getEmail()).withPassword(account.getPassword())
         .withType(AccountType.valueOf(account.getType().name())).build();
   }
 
-  private com.ecommerce.model.Account getAccount(Account account) {
+  private com.ecommerce.model.Account getAccount(final Account account) {
     return com.ecommerce.model.Account.builder().withEmail(account.getEmail())
         .withPassword(account.getPassword())
         .withType(
