@@ -74,7 +74,7 @@ public class AccountServiceDefaultTest {
       // We hope the `createAccount` throw an Exception and that exception that
       // the same message that we put into the `assertEquals` method.
       assertEquals(
-          "Can´t create account at this time.  Please try again later",
+          "Can´t create account at this time. Please try again later",
           ce.getMessage());
     }
 
