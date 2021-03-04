@@ -8,7 +8,7 @@ import static org.mockito.Mockito.times;
 
 import com.ecommerce.domain.Account;
 import com.ecommerce.domain.AccountType;
-import com.ecommerce.exceptions.ConnectionException;
+import com.ecommerce.exceptions.AccountException;
 import com.ecommerce.repository.AccountRepository;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +44,7 @@ public class AccountServiceDefaultTest {
 
     try {
       service.createAccount(account);
-    } catch (ConnectionException ce) {
+    } catch (AccountException ce) {
       // If the `createAccount` method return an Exception the test fail
       fail();
     }
@@ -70,7 +70,7 @@ public class AccountServiceDefaultTest {
 
     try {
       service.createAccount(account);
-    } catch (ConnectionException ce) {
+    } catch (AccountException ce) {
       // We hope the `createAccount` throw an Exception and that exception that
       // the same message that we put into the `assertEquals` method.
       assertEquals(
